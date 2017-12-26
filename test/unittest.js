@@ -297,6 +297,8 @@ describe( 'EventEmitter', function() {
                 o.once( 'a', () => {} );
                 o.once( 'a', () => {} );
                 expect( o.called ).to.equal( 2 );
+                o.once( 'a', () => {} );
+                expect( o.called ).to.equal( 3 );
 
                 console.warn = bak;
             } );
