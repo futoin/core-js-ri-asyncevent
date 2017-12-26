@@ -130,7 +130,7 @@ The concept is described in FutoIn specification: [FTN15: Native Event API v1.x]
 
 <dl>
 <dt><a href="#EventEmitter">EventEmitter</a></dt>
-<dd><p>Asynchornous Event Emitter.</p>
+<dd><p>Asynchronous Event Emitter.</p>
 </dd>
 </dl>
 
@@ -159,7 +159,7 @@ The concept is described in FutoIn specification: [FTN15: Native Event API v1.x]
 <a name="EventEmitter"></a>
 
 ## EventEmitter
-Asynchornous Event Emitter.
+Asynchronous Event Emitter.
 
 **Kind**: global class  
 **Note**: Please avoid inheritting it, use EventEmitter.attach() instead!  

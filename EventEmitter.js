@@ -28,7 +28,7 @@ const ON_PREFIX = '_evt_';
 const ONCE_PREFIX = '_evtonce_';
 
 /**
- * Asynchornous Event Emitter.
+ * Asynchronous Event Emitter.
  *
  * @note Please avoid inheritting it, use EventEmitter.attach() instead!
  */
