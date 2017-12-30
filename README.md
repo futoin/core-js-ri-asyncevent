@@ -36,7 +36,7 @@ Second important feature - strict check of preconfigured allowed event types.
 2. `EventEmitter` instance is hidden in `target[EventEmitter.SYM_EVENT_EMITTER]` property.
     - Almost no pollution to target object
     - Very fast lookup
-    - `on()`, `off()`, `once()` and `emit()` are defined as properties which propxy call
+    - `on()`, `off()`, `once()` and `emit()` are defined as properties which proxy call
 3. At the moment, `emit()` uses ES6 spread oprerator (e.g. `...args`):
     - the approach which is around 4 times faster in Node.js compared to old ES5 browsers
     - there are no optimizations done yet (no significant case so far)
@@ -45,7 +45,7 @@ Second important feature - strict check of preconfigured allowed event types.
     - "once" array is simply discarded and replaced after first use, if there are any handlers
     - `on()`/`once()` calls are cheap
     - `off()` call uses `array#filter()`
-    - the same handler can be added more then once, but it gets removed on first `off()` call
+    - the same handler can be added more than once, but it gets removed on first `off()` call
     - `off()` removes handler both from "on" and "once" arrays
 5. Async event dispatch considerations:
     - `once( 'event', () => o.once( 'event', ... ) )` approach IS NOT SAFE as it leads to missed events!
