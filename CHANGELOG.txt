@@ -1,4 +1,8 @@
 
+=== (next)
+CHANGED: upgraded webpack to v4
+NEW: Node.js v10 testing
+
 === 0.9.0 (2017-12-26) ===
 Initial release
 

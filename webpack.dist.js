@@ -5,6 +5,7 @@ const package_json = require( './package' );
 
 module.exports = [
     {
+        mode: 'production',
         entry: {
             'futoin-asyncevent': `./${package_json.browser}`,
         },
@@ -26,6 +27,7 @@ module.exports = [
         ],
     },
     {
+        mode: 'production',
         entry: {
             'polyfill-asyncevent': './lib/polyfill.js',
         },
