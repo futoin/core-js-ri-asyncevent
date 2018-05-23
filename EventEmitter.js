@@ -146,7 +146,7 @@ class EventEmitter {
             throw new Error( 'Already attached' );
         }
 
-        const ee = new EventEmitter( allowed_events, max_listeners );
+        const ee = new module.exports( allowed_events, max_listeners );
 
         Object.defineProperties(
             instance,

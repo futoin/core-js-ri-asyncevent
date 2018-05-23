@@ -4,16 +4,10 @@
 Object.freeze( Object.prototype );
 
 //
-let $asyncevent;
-let expect;
-
-if ( typeof window !== 'undefined' ) {
-    $asyncevent = window.$asyncevent;
-    expect = window.chai.expect;
-} else {
-    $asyncevent = module.require( '../lib/asyncevent' );
-    expect = module.require( 'chai' ).expect;
-}
+const $asyncevent = ( typeof window !== 'undefined' )
+    ? require( 'futoin-asyncevent' )
+    : module.require( '../lib/asyncevent' );
+const { expect } = require( 'chai' );
 
 const SYM_EVENT_EMITTER = $asyncevent.EventEmitter.SYM_EVENT_EMITTER;
 

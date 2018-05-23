@@ -1,5 +1,8 @@
 
-=== (next)
+=== (next) ===
+FIXED: improved browser tests to use dist module
+
+=== 1.0.1 (2018-05-10) ===
 CHANGED: upgraded webpack to v4
 NEW: Node.js v10 testing
 
