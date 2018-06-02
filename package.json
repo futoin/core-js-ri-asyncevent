@@ -43,7 +43,7 @@
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
-    "core-js": "^2.5.6",
+    "core-js": "^2.5.7",
     "eslint": "^4.19.1",
     "grunt": "^1.0.2",
     "grunt-babel": "^7.0.0",
@@ -56,6 +56,6 @@
     "grunt-webpack": "^3.1.2",
     "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
-    "webpack": "^4.8.3"
+    "webpack": "^4.10.2"
   }
 }

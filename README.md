@@ -7,6 +7,17 @@
   [![NPM](https://nodei.co/npm/futoin-asyncevent.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/futoin-asyncevent/)
 
 **Stability: 3 - Stable**
+  
+# About
+
+Implementation of a well-known event emitter pattern, but with fundamental requirement: execute
+all events asynchronously - there must be no emitter functionality function frames on the stack.
+
+All other event emitters implementations are synchronous - they call handlers when event is emitted.
+
+Second important feature - strict check of preconfigured allowed event types.
+
+**Documentation** --> [FutoIn Guide](https://futoin.org/docs/miscjs/asyncevent/)
 
 Reference implementation of:
  
@@ -17,17 +28,6 @@ Spec: [FTN15: Native Event API v1.x](http://specs.futoin.org/final/preview/ftn15
 
 Author: [Andrey Galkin](mailto:andrey@futoin.org)
 
-[Web Site](http://futoin.org/)
-
-
-# About
-
-Implementation of a well-known event emitter pattern, but with fundamental requirement: execute
-all events asynchronously - there must be no emitter functionality function frames on the stack.
-
-All other event emitters implementations are synchronous - they call handlers when event is emitted.
-
-Second important feature - strict check of preconfigured allowed event types.
 
 # Extra details
 
