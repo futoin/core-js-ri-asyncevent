@@ -120,6 +120,28 @@ o.someFunc();
 // update max listeners warning threshold
 $asyncevent.EventEmitter.setMaxListeners( o, 16 );
 
+// Additional events in derived class
+// ----------------------------------
+class DerivedClass extends FirstClass {
+    constructor() {
+        super();
+        // Transparently checks, if EventEmitter has been already
+        // registered with other events
+        $asyncevent(this, ['another_event']);
+    }
+}
+
+// Fail on duplicate event names
+// ----------------------------------
+class FailClass extends FirstClass {
+    constructor() {
+        super();
+        // It's not allowed to override already registered event for
+        // safety reasons.
+        $asyncevent(this, ['event_one']);
+    }
+}
+
 ```
     
 # API documentation

@@ -1,6 +1,6 @@
 
 === (next) ===
-
+NEW: allow registration of additional events
 
 === 1.0.2 (2018-05-23) ===
 FIXED: improved browser tests to use dist module

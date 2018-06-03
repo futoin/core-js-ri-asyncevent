@@ -19,12 +19,19 @@ describe( 'EventEmitter', function() {
                 $asyncevent( o, [ 'a', 'b', 'c' ] );
             } );
 
-            it( "should fail on double invocation", function() {
+
+            it( "should allow additional registrationk", function() {
+                const o = {};
+                $asyncevent( o, [ 'a', 'b', 'c' ] );
+                $asyncevent( o, [ 'd' ] );
+            } );
+
+            it( "should fail on double registration", function() {
                 const o = {};
                 $asyncevent( o, [ 'a', 'b', 'c' ] );
 
-                expect( () => $asyncevent( o, [ 'a', 'b', 'c' ] ) )
-                    .to.throw( 'Already attached' );
+                expect( () => $asyncevent( o, [ 'b' ] ) )
+                    .to.throw( 'Event "b" has been already registered!' );
             } );
         }
     );
@@ -34,13 +41,16 @@ describe( 'EventEmitter', function() {
             it( "should attach handlers", function() {
                 const o = {};
                 $asyncevent( o, [ 'a', 'b', 'c' ] );
+                $asyncevent( o, [ 'd' ] );
                 o.on( 'a', () => {} );
                 o.on( 'a', () => {} );
                 o.on( 'b', () => {} );
+                o.on( 'd', () => {} );
 
                 expect( o[SYM_EVENT_EMITTER]._evt_a.length ).to.equal( 2 );
                 expect( o[SYM_EVENT_EMITTER]._evt_b.length ).to.equal( 1 );
                 expect( o[SYM_EVENT_EMITTER]._evt_c.length ).to.equal( 0 );
+                expect( o[SYM_EVENT_EMITTER]._evt_d.length ).to.equal( 1 );
             } );
 
             it( "should fail on unknown event", function() {

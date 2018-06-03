@@ -142,8 +142,21 @@ class EventEmitter {
      * @param {integer} max_listeners=8 - maximum allowed handlers per event name
      */
     static attach( instance, allowed_events, max_listeners=8 ) {
-        if ( instance[SYM_EVENT_EMITTER] !== undefined ) {
-            throw new Error( 'Already attached' );
+        const old_ee = instance[SYM_EVENT_EMITTER];
+
+        if ( old_ee !== undefined ) {
+            old_ee._max = max_listeners;
+
+            for ( let evt of allowed_events ) {
+                if ( `${ON_PREFIX}${evt}` in old_ee ) {
+                    throw new Error( `Event "${evt}" has been already registered!` );
+                } else {
+                    old_ee[`${ON_PREFIX}${evt}`] = [];
+                    old_ee[`${ONCE_PREFIX}${evt}`] = [];
+                }
+            }
+
+            return;
         }
 
         const ee = new module.exports( allowed_events, max_listeners );
