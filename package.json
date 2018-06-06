@@ -45,6 +45,7 @@
     "chai": "^4.1.2",
     "core-js": "^2.5.7",
     "eslint": "^4.19.1",
+    "futoin-asyncsteps": "^2.0.0",
     "grunt": "^1.0.2",
     "grunt-babel": "^7.0.0",
     "grunt-contrib-connect": "^1.0.2",
