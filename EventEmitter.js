@@ -19,10 +19,7 @@
  * limitations under the License.
  */
 
-const scheduleCall = (
-    ( ( typeof setImmediate !== 'undefined' ) && setImmediate ) ||
-    ( ( c ) => setTimeout( c, 0 ) )
-);
+const scheduleCall = require( 'futoin-asyncsteps' ).AsyncTool.callImmediate;
 const SYM_EVENT_EMITTER = Symbol( 'FutoIn Event Emitter' );
 const ON_PREFIX = '_evt_';
 const ONCE_PREFIX = '_evtonce_';
@@ -30,7 +27,7 @@ const ONCE_PREFIX = '_evtonce_';
 /**
  * Asynchronous Event Emitter.
  *
- * @note Please avoid inheritting it, use EventEmitter.attach() instead!
+ * @note Please avoid inheriting it, use EventEmitter.attach() instead!
  */
 class EventEmitter {
     constructor( allowed_events, max_listeners ) {

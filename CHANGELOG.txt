@@ -1,4 +1,7 @@
 
+=== (next) ===
+CHANGED: to use futoin-asyncsteps event loop
+
 === 1.1.1 (2018-06-06) ===
 FIXED: crash Babel instanceof check issue
 

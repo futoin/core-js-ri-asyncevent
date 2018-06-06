@@ -184,7 +184,7 @@ The concept is described in FutoIn specification: [FTN15: Native Event API v1.x]
 Asynchronous Event Emitter.
 
 **Kind**: global class  
-**Note**: Please avoid inheritting it, use EventEmitter.attach() instead!  
+**Note**: Please avoid inheriting it, use EventEmitter.attach() instead!  
 
 * [EventEmitter](#EventEmitter)
     * _instance_
