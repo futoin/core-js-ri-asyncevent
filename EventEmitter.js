@@ -132,7 +132,10 @@ class EventEmitter {
     }
 
     static [Symbol.hasInstance]( instance ) {
-        return instance[SYM_EVENT_EMITTER] !== undefined;
+        return (
+            ( instance[SYM_EVENT_EMITTER] !== undefined ) ||
+            ( instance.constructor === EventEmitter )
+        );
     }
 
     /**
@@ -159,7 +162,7 @@ class EventEmitter {
             return;
         }
 
-        const ee = new module.exports( allowed_events, max_listeners );
+        const ee = new EventEmitter( allowed_events, max_listeners );
 
         Object.defineProperties(
             instance,

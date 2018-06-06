@@ -1,4 +1,7 @@
 
+=== (next) ===
+FIXED: crash Babel instanceof check issue
+
 === 1.1.0 (2018-06-03) ===
 NEW: allow registration of additional events
 

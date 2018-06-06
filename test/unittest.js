@@ -319,6 +319,9 @@ describe( 'EventEmitter', function() {
                     $asyncevent( o, [ 'a', 'b', 'c' ] );
 
                     expect( o instanceof $asyncevent.EventEmitter ).to.be.true;
+
+                    const ee = new $asyncevent.EventEmitter( [ 'evt' ], 1 );
+                    expect( ee instanceof $asyncevent.EventEmitter ).to.be.true;
                 } );
             }
         }
