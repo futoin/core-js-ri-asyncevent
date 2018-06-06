@@ -1,5 +1,5 @@
 
-=== (next) ===
+=== 2.0.0 (2018-06-06) ===
 CHANGED: to use futoin-asyncsteps event loop
 
 === 1.1.1 (2018-06-06) ===
