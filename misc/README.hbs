@@ -14,8 +14,10 @@ Implementation of a well-known event emitter pattern, but with fundamental requi
 all events asynchronously - there must be no emitter functionality function frames on the stack.
 
 All other event emitters implementations are synchronous - they call handlers when event is emitted.
+As there is a known security-related timing problem of `setTimeout()` calls in browser, enhanced
+event loop is used from [futoin-asyncsteps](https://www.npmjs.com/package/futoin-asyncsteps) module.
 
-Second important feature - strict check of preconfigured allowed event types.
+Second important feature - strict check of allowed event types.
 
 **Documentation** --> [FutoIn Guide](https://futoin.org/docs/miscjs/asyncevent/)
 
