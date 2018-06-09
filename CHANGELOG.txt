@@ -1,5 +1,5 @@
 
-=== (next) ===
+=== 2.2.0 (2018-06-09) ===
 CHANGED: redesigned event calling to consume less event loop iterations
 
 === 2.1.0 (2018-06-09) ===
