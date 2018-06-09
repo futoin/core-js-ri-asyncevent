@@ -1,6 +1,6 @@
 {
   "name": "futoin-asyncevent",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "FutoIn AsyncEvent - FTN15 compliant event emitter",
   "main": "lib/asyncevent.js",
   "browser": "es5/lib/browser.js",
