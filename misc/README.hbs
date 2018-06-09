@@ -33,8 +33,9 @@ Author: [Andrey Galkin](mailto:andrey@futoin.org)
 
 # Extra details
 
-1. `setImmediate` / `setTimeout(handler, 0)` is used for each handler.
+1. ActiveAsyncTool from AsyncSteps is used for each handler.
     - All exceptions can be traced runtime-defined way.
+    - Performance of setImmediate() with workaround for security-related slowdown in browsers.
 2. `EventEmitter` instance is hidden in `target[EventEmitter.SYM_EVENT_EMITTER]` property.
     - Almost no pollution to target object
     - Very fast lookup

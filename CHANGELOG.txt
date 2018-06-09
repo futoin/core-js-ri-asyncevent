@@ -1,4 +1,7 @@
 
+=== (next) ===
+CHANGED: to use ActiveAsyncTool from AsyncSteps for event callback scheduling
+
 === 2.0.0 (2018-06-06) ===
 CHANGED: to use futoin-asyncsteps event loop
 

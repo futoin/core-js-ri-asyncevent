@@ -19,7 +19,7 @@
  * limitations under the License.
  */
 
-const scheduleCall = require( 'futoin-asyncsteps' ).AsyncTool.callImmediate;
+const $as = require( 'futoin-asyncsteps' );
 const SYM_EVENT_EMITTER = Symbol( 'FutoIn Event Emitter' );
 const ON_PREFIX = '_evt_';
 const ONCE_PREFIX = '_evtonce_';
@@ -32,6 +32,7 @@ const ONCE_PREFIX = '_evtonce_';
 class EventEmitter {
     constructor( allowed_events, max_listeners ) {
         this._max = max_listeners;
+        this._scheduleCall = $as.ActiveAsyncTool.callImmediate;
 
         for ( let evt of allowed_events ) {
             this[`${ON_PREFIX}${evt}`] = [];
@@ -105,7 +106,7 @@ class EventEmitter {
             // ---
             for ( let h of this[`${ON_PREFIX}${evt}`] ) {
                 // let runtime deal with exceptions
-                scheduleCall( () => h( ...args ) );
+                this._scheduleCall( () => h( ...args ) );
             }
 
             // ---
@@ -114,7 +115,7 @@ class EventEmitter {
             if ( once_list.length > 0 ) {
                 for ( let h of once_list ) {
                     // let runtime deal with exceptions
-                    scheduleCall( () => h( ...args ) );
+                    this._scheduleCall( () => h( ...args ) );
                 }
 
                 this[`${ONCE_PREFIX}${evt}`] = [];
