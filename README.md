@@ -34,8 +34,9 @@ Author: [Andrey Galkin](mailto:andrey@futoin.org)
 # Extra details
 
 1. ActiveAsyncTool from AsyncSteps is used for each handler.
-    - All exceptions can be traced runtime-defined way.
+    - All exceptions can be traced runtime-defined way - exceptions are forced to be re-thrown in dedicated event loop call
     - Performance of setImmediate() with workaround for security-related slowdown in browsers.
+    - A single immediate is used for regular execution of event.
 2. `EventEmitter` instance is hidden in `target[EventEmitter.SYM_EVENT_EMITTER]` property.
     - Almost no pollution to target object
     - Very fast lookup

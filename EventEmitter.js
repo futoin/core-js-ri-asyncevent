@@ -102,27 +102,40 @@ class EventEmitter {
      * @param {string} evt - event name
      */
     emit( evt, ...args ) {
-        try {
-            // ---
-            for ( let h of this[`${ON_PREFIX}${evt}`] ) {
-                // let runtime deal with exceptions
-                this._scheduleCall( () => h( ...args ) );
-            }
+        const handlers = this[`${ON_PREFIX}${evt}`];
+        const once_handlers = this[`${ONCE_PREFIX}${evt}`];
 
-            // ---
-            const once_list = this[`${ONCE_PREFIX}${evt}`];
-
-            if ( once_list.length > 0 ) {
-                for ( let h of once_list ) {
-                    // let runtime deal with exceptions
-                    this._scheduleCall( () => h( ...args ) );
-                }
-
-                this[`${ONCE_PREFIX}${evt}`] = [];
-            }
-        } catch ( e ) {
+        if ( handlers === undefined ) {
             throw new Error( `Unknown event: ${evt}` );
         }
+
+        const call_list = [];
+
+        for ( let h of handlers ) {
+            call_list.push( h );
+        }
+
+        if ( once_handlers.length ) {
+            for ( let h of once_handlers ) {
+                call_list.push( h );
+            }
+
+            this[`${ONCE_PREFIX}${evt}`] = [];
+        }
+
+        this._scheduleCall( () => {
+            // ---
+            for ( let h of call_list ) {
+                try {
+                    h( ...args );
+                } catch ( e ) {
+                    // let runtime deal with exceptions
+                    this._scheduleCall( () => {
+                        throw e;
+                    } );
+                }
+            }
+        } );
     }
 
     static get SYM_EVENT_EMITTER() {
