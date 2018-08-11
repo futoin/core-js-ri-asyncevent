@@ -1,3 +1,5 @@
+=== (next) ===
+CHANGED: dependency maintenance
 
 === 2.2.0 (2018-06-09) ===
 CHANGED: redesigned event calling to consume less event loop iterations
