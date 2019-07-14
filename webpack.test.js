@@ -11,23 +11,17 @@ module.exports = {
         libraryTarget: "umd",
     },
     externals: {
+        'futoin-asyncsteps' : {
+            root: "$as",
+            amd: "futoin-asyncsteps",
+            commonjs: "futoin-asyncsteps",
+            commonjs2: "futoin-asyncsteps",
+        },
         'futoin-asyncevent' : {
             root: "$asyncevent",
             amd: "futoin-asyncevent",
             commonjs: "futoin-asyncevent",
             commonjs2: "futoin-asyncevent",
-        },
-        chai : {
-            root: "chai",
-            amd: "chai",
-            commonjs: "chai",
-            commonjs2: "chai",
-        },
-        mocha : {
-            root: "mocha",
-            amd: "mocha",
-            commonjs: "mocha",
-            commonjs2: "mocha",
         },
     },
     node : false,
