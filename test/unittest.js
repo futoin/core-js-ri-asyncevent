@@ -259,7 +259,7 @@ describe( 'EventEmitter', function() {
                     a: 0,
                 };
 
-                const EVT_NUM = 1e5;
+                const EVT_NUM = ( typeof window !== 'undefined' ) ? 1e3 : 1e5;
 
                 o.on( 'a', ( a, b, c, d ) => {
                     spies.a += 1;
