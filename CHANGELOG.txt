@@ -1,4 +1,4 @@
-=== (next) ===
+=== 2.3.3 (2020-01-05) ===
 FIXED: dev deps leak into dependencies
 
 === 2.3.2 (2019-11-02) ===
