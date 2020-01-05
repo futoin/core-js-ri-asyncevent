@@ -1,3 +1,6 @@
+=== (next) ===
+FIXED: dev deps leak into dependencies
+
 === 2.3.2 (2019-11-02) ===
 CHANGED: deps maintenance
 
