@@ -7,9 +7,13 @@ Object.freeze( Object.prototype );
 const $asyncevent = ( typeof window !== 'undefined' )
     ? require( 'futoin-asyncevent' )
     : module.require( '../lib/asyncevent' );
-const { expect } = require( 'chai' );
 
 const SYM_EVENT_EMITTER = $asyncevent.EventEmitter.SYM_EVENT_EMITTER;
+
+let expect;
+before( async () => {
+    ( { expect } = ( await import( 'chai' ) ) );
+} );
 
 describe( 'EventEmitter', function() {
     describe(
@@ -33,7 +37,7 @@ describe( 'EventEmitter', function() {
                 expect( () => $asyncevent( o, [ 'b' ] ) )
                     .to.throw( 'Event "b" has been already registered!' );
             } );
-        }
+        },
     );
 
     describe(
@@ -60,7 +64,7 @@ describe( 'EventEmitter', function() {
                 expect( () => o.on( 'd', () => {} ) )
                     .to.throw( 'Unknown event: d' );
             } );
-        }
+        },
     );
 
     describe(
@@ -84,7 +88,7 @@ describe( 'EventEmitter', function() {
                 expect( () => o.once( 'd', () => {} ) )
                     .to.throw( 'Unknown event: d' );
             } );
-        }
+        },
     );
 
     describe(
@@ -167,7 +171,7 @@ describe( 'EventEmitter', function() {
                 expect( () => o.off( 'd', () => {} ) )
                     .to.throw( 'Unknown event: d' );
             } );
-        }
+        },
     );
 
 
@@ -324,7 +328,7 @@ describe( 'EventEmitter', function() {
                     expect( ee instanceof $asyncevent.EventEmitter ).to.be.true;
                 } );
             }
-        }
+        },
     );
 } );
 
@@ -342,6 +346,6 @@ if ( typeof window !== 'undefined' ) {
                 expect( window.FutoIn.EventEmitter ).to.equal( $asyncevent.EventEmitter );
                 expect( window.futoin.EventEmitter ).to.equal( $asyncevent.EventEmitter );
             } );
-        }
+        },
     );
 }

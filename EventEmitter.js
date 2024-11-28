@@ -25,9 +25,14 @@ const ON_PREFIX = '_evt_';
 const ONCE_PREFIX = '_evtonce_';
 
 /**
+ * @callback Handler
+ * @param {...any} args - arbitrary arguments
+ */
+
+/**
  * Asynchronous Event Emitter.
  *
- * @note Please avoid inheriting it, use EventEmitter.attach() instead!
+ * Please avoid inheriting it, use EventEmitter.attach() instead!
  */
 class EventEmitter {
     constructor( allowed_events, max_listeners ) {
@@ -43,19 +48,18 @@ class EventEmitter {
     /**
      * Attach event handler.
      * @param {string} evt - preconfigured event name
-     * @param {callable} handler - async event handler
+     * @param {Handler} handler - async event handler
      */
     on( evt, handler ) {
         try {
             const hlist = this[`${ON_PREFIX}${evt}`];
 
             if ( hlist.length === this._max ) {
-                // eslint-disable-next-line no-console
                 console.warn( `Hitting max handler limit for: ${evt}` );
             }
 
             hlist.push( handler );
-        } catch ( e ) {
+        } catch {
             throw new Error( `Unknown event: ${evt}` );
         }
     }
@@ -63,19 +67,18 @@ class EventEmitter {
     /**
      * Attach once-only event handler.
      * @param {string} evt - preconfigured event name
-     * @param {callable} handler - async event handler
+     * @param {Handler} handler - async event handler
      */
     once( evt, handler ) {
         try {
             const hlist = this[`${ONCE_PREFIX}${evt}`];
 
             if ( hlist.length === this._max ) {
-                // eslint-disable-next-line no-console
                 console.warn( `Hitting max once handler limit for: ${evt}` );
             }
 
             hlist.push( handler );
-        } catch ( e ) {
+        } catch {
             throw new Error( `Unknown event: ${evt}` );
         }
     }
@@ -83,7 +86,7 @@ class EventEmitter {
     /**
      * Remove event handler.
      * @param {string} evt - preconfigured event name
-     * @param {callable} handler - async event handler
+     * @param {Handler} handler - async event handler
      */
     off( evt, handler ) {
         try {
@@ -92,7 +95,7 @@ class EventEmitter {
 
             const memb_once = `${ONCE_PREFIX}${evt}`;
             this[memb_once] = this[memb_once].filter( ( h ) => h !== handler );
-        } catch ( e ) {
+        } catch {
             throw new Error( `Unknown event: ${evt}` );
         }
     }
@@ -100,6 +103,7 @@ class EventEmitter {
     /**
      * Emit async event.
      * @param {string} evt - event name
+     * @param {...any} args - arguments to pass to the event handler
      */
     emit( evt, ...args ) {
         const handlers = this[`${ON_PREFIX}${evt}`];
@@ -152,8 +156,8 @@ class EventEmitter {
     /**
      * Attach event emitter to any instance
      * @param {object} instance - target object
-     * @param {array} allowed_events - list of allowed event names
-     * @param {integer} max_listeners=8 - maximum allowed handlers per event name
+     * @param {Array} allowed_events - list of allowed event names
+     * @param {number} [max_listeners] - maximum allowed handlers per event name
      */
     static attach( instance, allowed_events, max_listeners=8 ) {
         const old_ee = instance[SYM_EVENT_EMITTER];
@@ -208,14 +212,14 @@ class EventEmitter {
                     writable: false,
                     value: ( evt, ...args ) => ee.emit( evt, ...args ),
                 },
-            }
+            },
         );
     }
 
     /**
      * Dynamically update max listener count
      * @param {object} instance - target object
-     * @param {integer} max_listeners - maximum allowed handlers per event name
+     * @param {number} max_listeners - maximum allowed handlers per event name
      */
     static setMaxListeners( instance, max_listeners ) {
         instance[SYM_EVENT_EMITTER]._max = max_listeners;

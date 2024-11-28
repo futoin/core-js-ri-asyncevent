@@ -157,6 +157,7 @@ The concept is described in FutoIn specification: [FTN15: Native Event API v1.x]
 <dl>
 <dt><a href="#EventEmitter">EventEmitter</a></dt>
 <dd><p>Asynchronous Event Emitter.</p>
+<p>Please avoid inheriting it, use EventEmitter.attach() instead!</p>
 </dd>
 </dl>
 
@@ -182,22 +183,30 @@ The concept is described in FutoIn specification: [FTN15: Native Event API v1.x]
 </dd>
 </dl>
 
+## Typedefs
+
+<dl>
+<dt><a href="#Handler">Handler</a> : <code>function</code></dt>
+<dd></dd>
+</dl>
+
 <a name="EventEmitter"></a>
 
 ## EventEmitter
 Asynchronous Event Emitter.
 
+Please avoid inheriting it, use EventEmitter.attach() instead!
+
 **Kind**: global class  
-**Note**: Please avoid inheriting it, use EventEmitter.attach() instead!  
 
 * [EventEmitter](#EventEmitter)
     * _instance_
         * [.on(evt, handler)](#EventEmitter+on)
         * [.once(evt, handler)](#EventEmitter+once)
         * [.off(evt, handler)](#EventEmitter+off)
-        * [.emit(evt)](#EventEmitter+emit)
+        * [.emit(evt, ...args)](#EventEmitter+emit)
     * _static_
-        * [.attach(instance, allowed_events, max_listeners)](#EventEmitter.attach)
+        * [.attach(instance, allowed_events, [max_listeners])](#EventEmitter.attach)
         * [.setMaxListeners(instance, max_listeners)](#EventEmitter.setMaxListeners)
 
 <a name="EventEmitter+on"></a>
@@ -210,7 +219,7 @@ Attach event handler.
 | Param | Type | Description |
 | --- | --- | --- |
 | evt | <code>string</code> | preconfigured event name |
-| handler | <code>callable</code> | async event handler |
+| handler | [<code>Handler</code>](#Handler) | async event handler |
 
 <a name="EventEmitter+once"></a>
 
@@ -222,7 +231,7 @@ Attach once-only event handler.
 | Param | Type | Description |
 | --- | --- | --- |
 | evt | <code>string</code> | preconfigured event name |
-| handler | <code>callable</code> | async event handler |
+| handler | [<code>Handler</code>](#Handler) | async event handler |
 
 <a name="EventEmitter+off"></a>
 
@@ -234,11 +243,11 @@ Remove event handler.
 | Param | Type | Description |
 | --- | --- | --- |
 | evt | <code>string</code> | preconfigured event name |
-| handler | <code>callable</code> | async event handler |
+| handler | [<code>Handler</code>](#Handler) | async event handler |
 
 <a name="EventEmitter+emit"></a>
 
-### eventEmitter.emit(evt)
+### eventEmitter.emit(evt, ...args)
 Emit async event.
 
 **Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)  
@@ -246,10 +255,11 @@ Emit async event.
 | Param | Type | Description |
 | --- | --- | --- |
 | evt | <code>string</code> | event name |
+| ...args | <code>any</code> | arguments to pass to the event handler |
 
 <a name="EventEmitter.attach"></a>
 
-### EventEmitter.attach(instance, allowed_events, max_listeners)
+### EventEmitter.attach(instance, allowed_events, [max_listeners])
 Attach event emitter to any instance
 
 **Kind**: static method of [<code>EventEmitter</code>](#EventEmitter)  
@@ -257,8 +267,8 @@ Attach event emitter to any instance
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | instance | <code>object</code> |  | target object |
-| allowed_events | <code>array</code> |  | list of allowed event names |
-| max_listeners | <code>integer</code> | <code>8</code> | maximum allowed handlers per event name |
+| allowed_events | <code>Array</code> |  | list of allowed event names |
+| [max_listeners] | <code>number</code> | <code>8</code> | maximum allowed handlers per event name |
 
 <a name="EventEmitter.setMaxListeners"></a>
 
@@ -270,7 +280,7 @@ Dynamically update max listener count
 | Param | Type | Description |
 | --- | --- | --- |
 | instance | <code>object</code> | target object |
-| max_listeners | <code>integer</code> | maximum allowed handlers per event name |
+| max_listeners | <code>number</code> | maximum allowed handlers per event name |
 
 <a name="$asyncevent"></a>
 
@@ -308,9 +318,9 @@ Reference to EventEmitter class
         * [.on(evt, handler)](#EventEmitter+on)
         * [.once(evt, handler)](#EventEmitter+once)
         * [.off(evt, handler)](#EventEmitter+off)
-        * [.emit(evt)](#EventEmitter+emit)
+        * [.emit(evt, ...args)](#EventEmitter+emit)
     * _static_
-        * [.attach(instance, allowed_events, max_listeners)](#EventEmitter.attach)
+        * [.attach(instance, allowed_events, [max_listeners])](#EventEmitter.attach)
         * [.setMaxListeners(instance, max_listeners)](#EventEmitter.setMaxListeners)
 
 <a name="EventEmitter+on"></a>
@@ -323,7 +333,7 @@ Attach event handler.
 | Param | Type | Description |
 | --- | --- | --- |
 | evt | <code>string</code> | preconfigured event name |
-| handler | <code>callable</code> | async event handler |
+| handler | [<code>Handler</code>](#Handler) | async event handler |
 
 <a name="EventEmitter+once"></a>
 
@@ -335,7 +345,7 @@ Attach once-only event handler.
 | Param | Type | Description |
 | --- | --- | --- |
 | evt | <code>string</code> | preconfigured event name |
-| handler | <code>callable</code> | async event handler |
+| handler | [<code>Handler</code>](#Handler) | async event handler |
 
 <a name="EventEmitter+off"></a>
 
@@ -347,11 +357,11 @@ Remove event handler.
 | Param | Type | Description |
 | --- | --- | --- |
 | evt | <code>string</code> | preconfigured event name |
-| handler | <code>callable</code> | async event handler |
+| handler | [<code>Handler</code>](#Handler) | async event handler |
 
 <a name="EventEmitter+emit"></a>
 
-### eventEmitter.emit(evt)
+### eventEmitter.emit(evt, ...args)
 Emit async event.
 
 **Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)  
@@ -359,10 +369,11 @@ Emit async event.
 | Param | Type | Description |
 | --- | --- | --- |
 | evt | <code>string</code> | event name |
+| ...args | <code>any</code> | arguments to pass to the event handler |
 
 <a name="EventEmitter.attach"></a>
 
-### EventEmitter.attach(instance, allowed_events, max_listeners)
+### EventEmitter.attach(instance, allowed_events, [max_listeners])
 Attach event emitter to any instance
 
 **Kind**: static method of [<code>EventEmitter</code>](#EventEmitter)  
@@ -370,8 +381,8 @@ Attach event emitter to any instance
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | instance | <code>object</code> |  | target object |
-| allowed_events | <code>array</code> |  | list of allowed event names |
-| max_listeners | <code>integer</code> | <code>8</code> | maximum allowed handlers per event name |
+| allowed_events | <code>Array</code> |  | list of allowed event names |
+| [max_listeners] | <code>number</code> | <code>8</code> | maximum allowed handlers per event name |
 
 <a name="EventEmitter.setMaxListeners"></a>
 
@@ -383,7 +394,7 @@ Dynamically update max listener count
 | Param | Type | Description |
 | --- | --- | --- |
 | instance | <code>object</code> | target object |
-| max_listeners | <code>integer</code> | maximum allowed handlers per event name |
+| max_listeners | <code>number</code> | maximum allowed handlers per event name |
 
 <a name="$asyncevent"></a>
 
@@ -398,6 +409,15 @@ Attach event emitter properties to object. Call it in c-tor.
 Reference to EventEmitter class
 
 **Kind**: static property of [<code>$asyncevent</code>](#$asyncevent)  
+<a name="Handler"></a>
+
+## Handler : <code>function</code>
+**Kind**: global typedef  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ...args | <code>any</code> | arbitrary arguments |
+
 
 
 *documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*.
